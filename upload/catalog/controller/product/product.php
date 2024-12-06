@@ -521,4 +521,27 @@ class Product extends \Opencart\System\Engine\Controller {
 
 		return null;
 	}
+	public function analyzeProductAttributes($imageUrl) {
+    $apiKey = 'your-azure-api-key';
+    $endpoint = 'your-azure-endpoint';
+    $url = $endpoint . '/vision/v3.2/analyze';
+
+    $headers = [
+        'Ocp-Apim-Subscription-Key: ' . $apiKey,
+        'Content-Type: application/json'
+    ];
+    $body = json_encode(['url' => $imageUrl]);
+
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    return json_decode($response, true);
+}
+
 }
