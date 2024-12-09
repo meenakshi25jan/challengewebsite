@@ -389,5 +389,19 @@ $(document).ready(function() {
         }
     });
 });
+<div class="recommended-products">
+    <h3>Recommended for You</h3>
+    <ul>
+        {% for item in recommendations %}
+        <li>
+            <a href="{{ item.link }}">
+                <img src="{{ item.image }}" alt="{{ item.name }}">
+                <p>{{ item.name }}</p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 //--></script>
 {{ footer }}
