@@ -402,6 +402,7 @@ $(document).ready(function() {
         {% endfor %}
     </ul>
 </div>
+$data['recommendations'] = $this->getAzureRecommendations($product_id);
 
 //--></script>
 {{ footer }}
